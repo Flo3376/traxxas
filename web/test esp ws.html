@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP Simulation Client</title>
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+        }
+        svg {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        .horizon {
+            transform-origin: 50% 50%;
+        }
+        .sky { fill: #87CEEB; }
+        .ground { fill: #8B4513; }
+    </style>
+<body>
+    <h1>ESP Simulation Client</h1>
+    <button onclick="startSimulation()">Démarrer la simulation</button>
+    <h3>Statut :</h3>
+    <p id="status">Déconnecté</p>
+    <h3>Messages reçus :</h3>
+
+    <div id="svg-container" style="width: 300px;">
+      <svg version="1.1"
+         id="svg34" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;" inkscape:version="1.4 (86a8ad7, 2024-10-11)" sodipodi:docname="artificial-horizon2.svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 281.3 281.3"
+         style="enable-background:new 0 0 281.3 281.3;" xml:space="preserve">
+          <style type="text/css">
+              .st0{filter:url(#Adobe_OpacityMaskFilter);}
+              .st1{fill:#231F20;}
+              .st2{mask:url(#SVGID_1_);}
+              .st3{fill:#733813;}
+              .st4{fill:#000080;}
+              .st5{fill:none;stroke:#FFFFFF;stroke-width:1.0007;stroke-linecap:square;}
+              .st6{fill:#FFFFFF;}
+              .st7{fill:none;stroke:#FFFFFF;stroke-width:1.0007;}
+              .st8{display:none;fill:#5B93C5;stroke:#000000;stroke-width:1.0007;}
+              .st9{fill-rule:evenodd;clip-rule:evenodd;fill:#5B6066;stroke:#000000;stroke-width:1.0007;stroke-linecap:square;}
+              .st10{fill:none;stroke:#000000;stroke-width:1.0007;stroke-linecap:square;}
+              .st11{fill-rule:evenodd;clip-rule:evenodd;fill:#3F3E44;stroke:#000000;stroke-width:1.0007;stroke-linecap:square;}
+              .st12{fill:#5B6066;}
+              .st13{fill-rule:evenodd;clip-rule:evenodd;fill:#FF4A23;stroke:#000000;stroke-width:1.0007;}
+              .st14{fill:none;stroke:#FFFFFF;stroke-width:1.0007;stroke-linecap:round;}
+              .st15{fill:#FC9258;}
+              .st16{fill:#A06B4F;}
+          </style>
+
+              <g i:extraneous="self">
+                  
+                      <sodipodi:namedview  bordercolor="#eeeeee" borderopacity="1" id="namedview34" inkscape:current-layer="layer3" inkscape:cx="247.14414" inkscape:cy="172.369" inkscape:deskcolor="#505050" inkscape:pagecheckerboard="0" inkscape:pageopacity="0" inkscape:showpageshadow="0" inkscape:window-height="1351" inkscape:window-maximized="1" inkscape:window-width="2560" inkscape:window-x="1431" inkscape:window-y="608" inkscape:zoom="1.42427" pagecolor="#505050">
+                      </sodipodi:namedview>
+                  <defs>
+                      <filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="-241" y="-139.5" width="760.8" height="563.3">
+                          
+                              <feColorMatrix  type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" color-interpolation-filters="sRGB" result="source"/>
+                      </filter>
+                  </defs>
+                  <mask maskUnits="userSpaceOnUse" x="-241" y="-139.5" width="760.8" height="563.3" id="SVGID_1_">
+                      <g class="st0">
+                          <circle class="st1" cx="140.6" cy="140.7" r="140.5"/>
+                      </g>
+                  </mask>
+                  <g class="st2">
+                      <g id="layer3" inkscape:groupmode="layer" inkscape:label="bille">
+                          <rect id="rect43" x="-240" y="141.7" class="st3" width="758.6" height="282.1"/>
+                          <rect id="rect44" x="-241" y="-139.5" class="st4" width="760.8" height="281"/>
+                          <path id="path19" class="st5" d="M134.6,134.6l12.1-0.1"/>
+                          <path id="path20" class="st5" d="M134.6,120.5l12.1-0.1"/>
+                          <path id="path21" class="st5" d="M132.2,127.6l16.8-0.1"/>
+                          <path id="path22" class="st6" d="M123.1,131.6l-0.1-7.4l1,0l0.1,7.4L123.1,131.6z M127.6,131.7c-0.6,0-1-0.3-1.2-0.9
+                              c-0.3-0.6-0.4-1.6-0.4-2.9c0-2.5,0.5-3.8,1.6-3.8c0.5,0,1,0.3,1.2,0.9c0.3,0.6,0.4,1.6,0.4,2.9c0,1.3-0.1,2.2-0.4,2.9
+                              S128.2,131.6,127.6,131.7L127.6,131.7z M128.2,127.8c0-1.1-0.1-1.9-0.2-2.3c-0.1-0.4-0.3-0.6-0.5-0.6c-0.2,0-0.4,0.2-0.5,0.5
+                              s-0.1,1.2-0.1,2.4c0,1.9,0.2,2.9,0.7,2.9C128,130.8,128.2,129.8,128.2,127.8L128.2,127.8z"/>
+                          <path id="path23" class="st6" d="M152.1,131.6l-0.1-7.4l1,0l0.1,7.4L152.1,131.6z M156.7,131.7c-0.6,0-1-0.3-1.2-0.9
+                              c-0.3-0.6-0.4-1.6-0.4-2.9c0-2.5,0.5-3.8,1.6-3.8c0.5,0,1,0.3,1.2,0.9c0.3,0.6,0.4,1.6,0.4,2.9c0,1.3-0.1,2.2-0.4,2.9
+                              C157.6,131.3,157.2,131.6,156.7,131.7L156.7,131.7z M157.3,127.8c0-1.1-0.1-1.9-0.2-2.3c-0.1-0.4-0.3-0.6-0.5-0.6
+                              c-0.2,0-0.4,0.2-0.5,0.5c-0.1,0.4-0.1,1.2-0.1,2.4c0,1.9,0.2,2.9,0.7,2.9C157.1,130.8,157.3,129.8,157.3,127.8L157.3,127.8z"/>
+                          <path id="path24" class="st6" d="M164.1,158.4v-8.3h1.1v8.3H164.1z M169.1,158.5c-0.6,0-1.1-0.4-1.4-1.1
+                              c-0.3-0.7-0.4-1.8-0.4-3.2c0-2.9,0.6-4.3,1.8-4.3c0.6,0,1.1,0.3,1.4,1c0.3,0.7,0.4,1.8,0.4,3.3c0,1.4-0.1,2.5-0.4,3.2
+                              C170.2,158.2,169.8,158.5,169.1,158.5L169.1,158.5z M169.9,154.3c0-1.3-0.1-2.2-0.2-2.6c-0.1-0.5-0.3-0.7-0.5-0.7
+                              c-0.2,0-0.4,0.2-0.5,0.6c-0.1,0.4-0.2,1.3-0.2,2.7c0,2.2,0.2,3.3,0.7,3.3C169.6,157.5,169.9,156.5,169.9,154.3L169.9,154.3z"/>
+                          <path id="path29" class="st6" d="M110.9,158.4v-8.3h1.1v8.3H110.9z M116,158.5c-0.6,0-1.1-0.4-1.4-1.1c-0.3-0.7-0.4-1.8-0.4-3.2
+                              c0-2.9,0.6-4.3,1.8-4.3c0.6,0,1.1,0.3,1.4,1s0.4,1.8,0.4,3.3c0,1.4-0.1,2.5-0.4,3.2C117.1,158.2,116.6,158.5,116,158.5
+                              L116,158.5z M116.7,154.3c0-1.3-0.1-2.2-0.2-2.6c-0.1-0.5-0.3-0.7-0.5-0.7c-0.2,0-0.4,0.2-0.5,0.6c-0.1,0.4-0.2,1.3-0.2,2.7
+                              c0,2.2,0.2,3.3,0.7,3.3C116.4,157.5,116.7,156.5,116.7,154.3L116.7,154.3z"/>
+                          <path id="path30" class="st6" d="M173.8,171.7v-0.2c1.5-2.4,2.2-4.3,2.2-5.7c0-0.4-0.1-0.8-0.3-1c-0.2-0.3-0.5-0.4-0.8-0.4
+                              c-0.2,0-0.5,0.1-0.9,0.3v-1.1c0.4-0.2,0.8-0.3,1.2-0.3c0.6,0,1.1,0.2,1.4,0.6c0.3,0.4,0.5,1,0.5,1.7c0,0.6-0.1,1.3-0.4,2
+                              c-0.3,0.7-0.7,1.7-1.4,3h1.9v1.1L173.8,171.7L173.8,171.7z M180.2,171.9c-0.6,0-1.1-0.4-1.4-1.1c-0.3-0.7-0.4-1.8-0.4-3.2
+                              c0-2.9,0.6-4.3,1.8-4.3c0.6,0,1.1,0.3,1.4,1c0.3,0.7,0.4,1.8,0.4,3.3c0,1.4-0.1,2.5-0.4,3.2S180.8,171.9,180.2,171.9
+                              L180.2,171.9z M180.9,167.6c0-1.3-0.1-2.2-0.2-2.6c-0.1-0.5-0.3-0.7-0.5-0.7c-0.2,0-0.4,0.2-0.5,0.6s-0.2,1.3-0.2,2.7
+                              c0,2.2,0.2,3.3,0.7,3.3C180.7,170.9,180.9,169.8,180.9,167.6L180.9,167.6z"/>
+                          <path id="path31" class="st6" d="M99.5,171.7v-0.2c1.5-2.4,2.2-4.3,2.2-5.7c0-0.4-0.1-0.8-0.3-1s-0.5-0.4-0.8-0.4
+                              c-0.2,0-0.5,0.1-0.9,0.3v-1.1c0.4-0.2,0.8-0.3,1.2-0.3c0.6,0,1.1,0.2,1.4,0.6c0.3,0.4,0.5,1,0.5,1.7c0,0.6-0.1,1.3-0.4,2
+                              c-0.3,0.7-0.7,1.7-1.4,3h1.9v1.1L99.5,171.7L99.5,171.7z M105.9,171.8c-0.6,0-1.1-0.4-1.4-1.1c-0.3-0.7-0.4-1.8-0.4-3.2
+                              c0-2.9,0.6-4.3,1.8-4.3c0.6,0,1.1,0.3,1.4,1c0.3,0.7,0.4,1.8,0.4,3.3c0,1.4-0.1,2.5-0.4,3.2C107,171.5,106.5,171.8,105.9,171.8
+                              L105.9,171.8z M106.6,167.5c0-1.3-0.1-2.2-0.2-2.6c-0.1-0.5-0.3-0.7-0.5-0.7c-0.2,0-0.4,0.2-0.5,0.6s-0.2,1.3-0.2,2.7
+                              c0,2.2,0.2,3.3,0.7,3.3C106.3,170.8,106.6,169.7,106.6,167.5L106.6,167.5z"/>
+                          <path id="path32" class="st7" d="M109.1,167.8h63 M183.5,167.8h46.2 M51.5,167.8h45.9"/>
+                          <path id="path33" class="st7" d="M172.6,154.3h60.2 M118.9,154.3h43.6 M48.4,154.3h60.3"/>
+                          <path id="path34" class="st7" d="M200.9,201.7l-59.3-60.3l88.6,23.4 M79.8,201.7l59.3-60.3l-88.6,23.4"/>
+                      </g>
+                      <g id="layer1" inkscape:groupmode="layer" inkscape:label="c_cadre">
+                          <circle id="circle1" class="st8" cx="139.9" cy="139.9" r="138.3"/>
+                          <path id="path3" class="st9" d="M140.7,12.4C70.8,12.4,14.2,69,14.2,138.8c0,33.8,13.3,64.4,34.8,87.1h183.3
+                              c21.6-22.7,34.8-53.4,34.8-87.1C267.2,69,210.5,12.4,140.7,12.4L140.7,12.4z M281,140.7c0,77.4-62.9,140.3-140.4,140.3
+                              S0.3,218.1,0.3,140.7S63.2,0.4,140.7,0.4S281,63.2,281,140.7L281,140.7z"/>
+                          <path id="path4" class="st10" d="M140.7,46.9c-51.6,0-93.6,41.9-93.6,93.5c0,37.7,22.4,70.2,54.6,85h0.8l25.1-44.4h25.9
+                              l25.4,44.4h0.8c32.2-14.8,54.6-47.3,54.6-85C234.2,88.8,192.3,46.9,140.7,46.9L140.7,46.9z"/>
+                          <path id="path5" class="st11" d="M163.7,252.9c0,12.7-10.3,23-23,23c-12.7,0-23-10.3-23-23c0-12.7,10.3-23,23-23
+                              C153.4,229.9,163.7,240.2,163.7,252.9z M159.3,252.9c0,10.3-8.3,18.6-18.6,18.6c-10.3,0-18.6-8.3-18.6-18.6s8.3-18.6,18.6-18.6
+                              C150.9,234.3,159.3,242.7,159.3,252.9z"/>
+                          <path id="path6" class="st12" d="M105.8,221.2c1.4-2.4,7-12.3,12.5-22l10-17.6l12.4,0l12.4,0l12.5,22l12.5,22h-74.8L105.8,221.2
+                              L105.8,221.2z"/>
+                      </g>
+                      <g id="layer2" inkscape:groupmode="layer" inkscape:label="graduation">
+                          <path id="path7" class="st5" d="M120.8,33l2.4,13.6"/>
+                          <path id="path8" class="st5" d="M160.7,33l-2.4,13.6"/>
+                          <path id="path9" class="st5" d="M101.6,38.6l4.7,13"/>
+                          <path id="path10" class="st5" d="M179.3,38.6l-4.7,13"/>
+                          <path id="path11" class="st13" d="M125.4,15.6h30.4L147,47h-3.7V17.9h-5.6l0.4,29.1h-3.3L125.4,15.6L125.4,15.6z"/>
+                          <path id="path12" class="st14" d="M30.6,140.7h13.8"/>
+                          <path id="path13" class="st14" d="M237.1,140.7h13.8"/>
+                          <path id="path14" class="st14" d="M54.3,96.1l-12-6.9"/>
+                          <path id="path15" class="st14" d="M226.5,96.1l12-6.9"/>
+                          <path id="path16" class="st5" d="M140.8,30v13.8"/>
+                          <path id="path17" class="st14" d="M198.4,46.7l-6.9,12"/>
+                          <path id="path18" class="st14" d="M82.1,46.7l6.9,12"/>
+                          <path id="path28" class="st15" d="M143.2,141c0,1.4-1.2,2.6-2.6,2.6c-1.4,0-2.6-1.2-2.6-2.6c0,0,0,0,0,0c0-1.4,1.2-2.6,2.6-2.6
+                              C142.1,138.4,143.2,139.6,143.2,141C143.2,141,143.2,141,143.2,141z"/>
+                          <path id="path25" class="st16" d="M139.6,142.6c-1.2,5.6-0.5,16.2-3.5,16.7c-3,0.6-3-0.2-6.9-2.9c-3.9-2.7-7.8-6.9-11.8-12.5h-4
+                              c7.2,11.3,14.3,18,21.4,20.3v16.3h11.7V164h0v0.1c7.2-2.5,14.3-9.3,21.4-20.2h-4c-3.8,5.3-7.6,9.3-11.5,12.1
+                              c-3.8,2.8-4.6,3.9-7.2,3.3c-2.7-0.5-2.5-8.9-3.2-14.7c-0.1-0.7-0.2-1.4-0.3-2.1L139.6,142.6L139.6,142.6z"/>
+                          <path id="path27" class="st15" d="M164.6,138.4h40.7c1.4,0,2.6,1.2,2.6,2.6c0,0,0,0,0,0c0,1.4-1.2,2.6-2.6,2.6l0,0h-40.7
+                              c-1.4,0-2.6-1.2-2.6-2.6S163.2,138.4,164.6,138.4"/>
+                          <path id="path26" class="st15" d="M75.9,138.4h40.7c1.4,0,2.6,1.2,2.6,2.6s-1.2,2.6-2.6,2.6H75.9c-1.4,0-2.6-1.2-2.6-2.6
+                              S74.5,138.4,75.9,138.4"/>
+                      </g>
+                  </g>
+              </g>
+          </svg>
+    </div>
+    <div id="values-display">
+        <p>Rotation : <span id="rotation-value">0</span>°</p>
+        <p>Position Y : <span id="y-value">0</span>°</p>
+        <button id="reset-gyro">Reset Gyroscope</button>
+    </div>
+
+
+
+    <div id="output"></div>
+
+
+    <script>
+        let ws;
+        let targetIP = ""; // IP de l'ESP détectée
+        let scanIndex = 0; // Index pour reprendre le scan
+        let maxScanAttempts = 5; // Nombre d'essais avant de passer au scan
+        let wsReconnectAttempts = 0; // Nombre d'essais de reconnexion WebSocket
+        let heartbeatTimeout; // Timeout pour le heartbeat
+        let silentTimeout; // Timeout pour espacer les tests en cas de silence
+        let silentCheckInterval = 10000; // Vérification toutes les 10 secondes en cas de silence
+
+
+        const svg = document.querySelector("svg");
+        const billeLayer = svg.getElementById("layer3"); // Calque "bille"
+
+        let rotation = 0; // Angle de rotation actuel
+        let yDegrees = 0; // Position Y actuel
+
+        let targetRotation = 0; // Angle cible
+        let targetYDegrees = 0; // Position Y cible
+
+        const billeCenterX = 140.5; // Coordonnée X du centre de rotation
+        const billeCenterY = 140.5; // Coordonnée Y du centre de rotation
+        const maxY = 125; // Déplacement maximum en pixels
+        const maxAngle = 90; // Angle maximum en degrés
+        const smoothingFactor = 0.1; // Plus bas = plus fluide mais plus lent
+        const yRatio = maxY / maxAngle; // Ratio d'étalonnage
+
+        let progress = 0; // Progression pour l'interpolation
+
+        const output = document.getElementById("output");
+        const status = document.getElementById("status");
+
+        // Fonction pour détecter et se connecter au WebSocket
+        async function connectWebSocket(ip) {
+            const wsURL = `ws://${ip}/ws`;
+            console.log(`Connexion WebSocket : ${wsURL}`);
+            ws = new WebSocket(wsURL);
+
+            ws.onopen = () => {
+                console.log("WebSocket connecté !");
+                status.textContent = `Connecté à ${ip}`;
+                wsReconnectAttempts = 0; // Réinitialise le compteur de reconnexion
+
+                // Démarrer le heartbeat
+                clearTimeout(heartbeatTimeout);
+                heartbeatTimeout = setTimeout(handleWebSocketTimeout, silentCheckInterval); // Timeout si silencieux
+
+                // Si silencieux, envoyer des pings
+                sendPingPeriodically();
+            };
+
+            ws.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data); // Parse le message JSON
+                    console.log("Message reçu :", data);
+
+                    // Vérifie le type du message
+                    if (data.type === "pong") {
+                        console.log("Pong reçu !");
+                        clearTimeout(heartbeatTimeout); // Réinitialise le timeout de ping si un pong est reçu
+                    }
+                    else if(data.type==="simulation"){
+                      setX(data.roll);
+                      setY(data.pitch);
+                    }
+                    else {
+                        console.warn("Message inconnu ou inattendu :", data);
+                    }
+                } catch (error) {
+                    console.error("Erreur lors du parsing du message WebSocket :", error);
+                }
+            };
+
+            ws.onclose = () => {
+                status.textContent = "WebSocket fermé. Tentative de reconnexion...";
+                console.error("WebSocket fermé. Tentative de reconnexion...");
+                reconnectWebSocket();
+            };
+
+            ws.onerror = (error) => {
+                console.error("Erreur WebSocket :", error);
+                ws.close();
+            };
+        }
+
+        // Fonction pour envoyer des pings périodiquement
+        function sendPingPeriodically() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                console.log("Envoi de ping au WebSocket...");
+                ws.send(JSON.stringify({ type: "ping" })); // Message de test "ping"
+                setTimeout(sendPingPeriodically, silentCheckInterval); // Replanifier un autre ping
+            }
+        }
+
+        // Fonction appelée si aucun message reçu dans l'intervalle
+        function handleWebSocketTimeout() {
+            console.error("Aucune réponse WebSocket, probablement perdu.");
+            ws.close(); // Force la fermeture pour déclencher la reconnexion
+        }
+
+        // Fonction pour reconnecter ou relancer un scan
+        function reconnectWebSocket() {
+            wsReconnectAttempts++;
+            if (wsReconnectAttempts >= maxScanAttempts) {
+                console.log("Échec répété, reprise du scan des passerelles...");
+                findGateway(); // Reprise du scan des IPs
+            } else {
+                setTimeout(() => connectWebSocket(targetIP), 10000); // Espacer de 10 secondes
+            }
+        }
+
+        // Fonction pour scanner les IPs (inchangée)
+        async function findGateway() {
+            const baseIP = "192.168";
+
+            for (let x = scanIndex; x <= 255; x++) {
+                const gatewayIP = `${baseIP}.${x}.1`;
+                console.log(`Scan de la passerelle : ${gatewayIP}`);
+                status.textContent = `Recherche du Crawler à l'adresse suvante : ${gatewayIP}`
+                const reachable = await pingServer(gatewayIP);
+
+                if (reachable) {
+                    targetIP = `${baseIP}.${x}.100`; // ESP supposé à x.x.x.100
+                    console.log(`Passerelle trouvée : ${gatewayIP}, tentative sur ${targetIP}`);
+                    connectWebSocket(targetIP);
+                    scanIndex = x; // Reprendre le scan ici si besoin
+                    return;
+                }
+            }
+
+            console.error("Aucune passerelle trouvée.");
+        }
+
+        // Fonction pour tester une IP (inchangée)
+        async function pingServer(ip) {
+            const url = `http://${ip}/`;
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 2000);
+
+                await fetch(url, { method: 'HEAD', signal: controller.signal, mode: 'no-cors' });
+                clearTimeout(timeoutId);
+                return true; // IP répond
+            } catch (error) {
+                if (error.name === "AbortError") {
+                    return true; // Timeout détecté (passerelle silencieuse)
+                }
+                return false; // Autre erreur
+            }
+        }
+        
+        function startSimulation() {
+            if (ws.readyState === WebSocket.OPEN) {
+                const command = { command: "start" }; // Objet JSON
+                ws.send(JSON.stringify({ type: "command",command :"start"}));    // Conversion en chaîne JSON
+                console.log("Commande 'start' envoyée sous forme de JSON");
+            } else {
+                alert("WebSocket non connecté");
+            }
+        }
+
+        // Fonction pour convertir les degrés en pixels
+        function degreesToPixels(degrees) {
+            return degrees * yRatio;
+        }
+
+        // Fonction easing pour un effet fluide
+        function easing(t) {
+            return t * t * (3 - 2 * t); // Ease-in-out
+        }
+
+        // Animation fluide avec easing
+        function smoothUpdate() {
+            if (progress < 1) {
+                progress += 0.02; // Ajuste la vitesse
+
+                // Interpolation avec easing
+                rotation = rotation + (targetRotation - rotation) * easing(progress);
+                yDegrees = yDegrees + (targetYDegrees - yDegrees) * easing(progress);
+
+                updateBilleTransform();
+
+                requestAnimationFrame(smoothUpdate); // Continue l'animation
+            } else {
+                // Fin de l'animation : assure que les valeurs sont exactes
+                rotation = targetRotation;
+                yDegrees = targetYDegrees;
+                updateBilleTransform();
+            }
+        }
+
+        // Fonction pour appliquer les transformations
+        function updateBilleTransform() {
+            const radianRotation = (rotation * Math.PI) / 180;
+
+            const height = degreesToPixels(yDegrees);
+            const dynamicDrift = -2.85 * yDegrees * Math.sin(radianRotation); // Facteur appliqué
+
+            const translateX = height * Math.sin(radianRotation) + dynamicDrift;
+            const translateY = height * Math.cos(radianRotation);
+
+            const transformString = `
+                translate(${translateX}, ${translateY})
+                rotate(${rotation}, ${billeCenterX}, ${billeCenterY})`;
+            billeLayer.setAttribute("transform", transformString);
+
+            // Mettre à jour l'affichage des valeurs
+            updateValuesDisplay();
+        }
+
+        // Fonction pour mettre à jour l'affichage des valeurs
+        function updateValuesDisplay() {
+            document.getElementById("rotation-value").textContent = rotation.toFixed(1);
+            document.getElementById("y-value").textContent = yDegrees.toFixed(1);
+        }
+
+        // Commandes pour manipuler manuellement les cibles
+        window.setX = function (newRotation) {
+            targetRotation = newRotation;
+            progress = 0; // Réinitialise la progression
+            requestAnimationFrame(smoothUpdate);
+        };
+
+        window.setY = function (degrees) {
+            targetYDegrees = degrees;
+            progress = 0; // Réinitialise la progression
+            requestAnimationFrame(smoothUpdate);
+        };
+
+        document.getElementById("reset-gyro").addEventListener("click", async function () {
+            try {
+                const response = await fetch('/zero_gyro');
+                const result = await response.json();
+                alert(result.message);
+            } catch (error) {
+                console.error("Erreur lors de la réinitialisation du gyroscope :", error);
+            }
+        });
+
+        // Initialiser la connexion WebSocket
+        // Démarrer la recherche de la passerelle
+        findGateway();
+
+
+    </script>
+</body>
+</html>
